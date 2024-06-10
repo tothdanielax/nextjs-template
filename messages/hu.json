@@ -1,0 +1,51 @@
+{
+  "ColorSchema": {
+    "schema": "{schema, select, light {világos} dark {sötét} auto {rendszer} other {}}",
+    "light": "világos",
+    "dark": "sötét",
+    "auto": "rendszer",
+    "toggle-color-scheme": "Váltás {schema} témára"
+  },
+  "Buttons": {
+    "toggle": "Váltás",
+    "submit": "Küldés",
+    "cancel": "Mégsem",
+    "close": "Bezárás",
+    "back": "Vissza",
+    "next": "Tovább",
+    "finish": "Befejezés",
+    "save": "Mentés",
+    "reset": "Visszaállítás",
+    "search": "Keresés",
+    "create": "Létrehozás"
+  },
+  "Menu": {
+    "index": "Kezdőlap",
+    "about": "Rólunk"
+  },
+  "Language": {
+    "en": "Angol/English",
+    "hu": "Magyar/Hungarian",
+    "select-language": "Nyelv választás"
+  },
+  "Index": {
+    "title": "Kezdőlap",
+    "hero": {
+      "title": "Üdvözöljük a weboldalunkon!",
+      "description": "Ez egy elég jó template szerintem. :)",
+      "image": {
+        "alt": "Kép a természetből"
+      }
+    }
+  },
+  "About": {
+    "title": "Rólunk",
+    "hero": {
+      "title": "Rólunk",
+      "description": "Nem sok minden mondható rólunk",
+      "image": {
+        "alt": "Kép a természetből"
+      }
+    }
+  }
+}
