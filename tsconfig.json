@@ -1,16 +1,13 @@
 {
+  "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
     /* Base Options: */
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES2017",
-    "allowJs": true,
-    "resolveJsonModule": true,
+    "target": "ES2022",
     "moduleDetection": "force",
-    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "noErrorTruncation": true,
+
     /* Strictness */
-    "strict": true,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
     "allowUnreachableCode": false,
@@ -21,61 +18,36 @@
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
-    /* Bundled projects */
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "ES2022"
-    ],
-    "noEmit": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "jsx": "preserve",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "incremental": true,
+
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "#/*": [
-        "./src/*"
-      ],
-      "#tests/*": [
+      "@tests/*": [
         "./tests/*"
       ],
-      "#components/*": [
-        "./src/components/*"
-      ],
-      "#styles/*": [
-        "./src/styles/*"
-      ],
-      "#types/*": [
-        "./src/types/*"
-      ],
-      "#models/*": [
-        "./src/models/*"
-      ],
-      "#messages/*": [
+      "@messages/*": [
         "./messages/*"
       ],
+      "@mocks/*": [
+        "./mocks/*"
+      ],
+      "@stories/*": [
+        "./stories/*"
+      ],
+      "@db/*": [
+        "./db/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
     "**/*.ts",
-    "**/*.json",
-    "**/*.js",
+    "*.js", // config files
     "**/*.tsx",
-    "**/*.json",
-    "vitest.config.ts",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "next-env.d.ts"
   ],
-  "exclude": [
-    "coverage",
-    "docs"
-  ]
+    "exclude": ["**/node_modules", "**/.*/"],
 }

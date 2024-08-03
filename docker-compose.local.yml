@@ -1,0 +1,22 @@
+name: nextjs-template-local
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGUSER: ${POSTGRES_USER}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - shared
+
+networks:
+  shared:

@@ -1,0 +1,12 @@
+---
+blank_issues_enabled: false
+contact_links:
+    - about: 'Please ask and answer usage questions on Stack Overflow.'
+      name: Question
+      url: 'https://stackoverflow.com/questions/tagged/nextjs'
+    - about: 'Please check the FAQ before filing new issues'
+      name: 'FAQ'
+      url: 'https://github.com/tothdanielax/nextjs-template/wiki/FAQ'
+    - about: 'Please raise issues about the site on its own repo.'
+      name: Website
+      url: 'https://github.com/tothdanielax/nextjs-template/issues/new'

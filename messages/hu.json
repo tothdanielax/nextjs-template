@@ -1,51 +1,47 @@
 {
-  "ColorSchema": {
-    "schema": "{schema, select, light {világos} dark {sötét} auto {rendszer} other {}}",
-    "light": "világos",
-    "dark": "sötét",
-    "auto": "rendszer",
-    "toggle-color-scheme": "Váltás {schema} témára"
-  },
-  "Buttons": {
-    "toggle": "Váltás",
-    "submit": "Küldés",
-    "cancel": "Mégsem",
-    "close": "Bezárás",
-    "back": "Vissza",
-    "next": "Tovább",
-    "finish": "Befejezés",
-    "save": "Mentés",
-    "reset": "Visszaállítás",
-    "search": "Keresés",
-    "create": "Létrehozás"
-  },
-  "Menu": {
-    "index": "Kezdőlap",
-    "about": "Rólunk"
-  },
-  "Language": {
-    "en": "Angol/English",
-    "hu": "Magyar/Hungarian",
-    "select-language": "Nyelv választás"
-  },
-  "Index": {
-    "title": "Kezdőlap",
-    "hero": {
-      "title": "Üdvözöljük a weboldalunkon!",
-      "description": "Ez egy elég jó template szerintem. :)",
-      "image": {
-        "alt": "Kép a természetből"
-      }
-    }
-  },
-  "About": {
-    "title": "Rólunk",
-    "hero": {
-      "title": "Rólunk",
-      "description": "Nem sok minden mondható rólunk",
-      "image": {
-        "alt": "Kép a természetből"
-      }
-    }
-  }
+	"components": {
+		"common": {},
+		"inputs": {
+			"select": {
+				"DarkMode": {
+					"light": "világos",
+					"dark": "sötét",
+					"auto": "automatikus",
+					"toggle-color-schema": "Válassza ki a színsémát"
+				},
+				"Language": {
+					"en": "Angol",
+					"hu": "Magyar",
+					"select-language": "Válasszon nyelvet"
+				}
+			}
+		},
+		"layout": {
+			"Navbar": {
+				"home": "Kezdőlap",
+				"users": "Felhasználók"
+			}
+		}
+	},
+	"app": {
+		"index": {
+			"Page": {
+				"title": "Kezdőlap"
+			},
+			"Error": {
+				"retry": "Próbálja újra",
+				"something-went-wrong": "Something went wrong. Please try again later."
+			},
+			"NotFoundPage": {
+				"title": "Az oldal nem található",
+				"description": "Az általad keresett oldal nem létezik.",
+				"back-to-homepage": "Vissza a kezdőlapra"
+			}
+		},
+		"users": {
+			"Page": {
+				"title": "Felhasználók"
+			}
+		}
+	}
 }

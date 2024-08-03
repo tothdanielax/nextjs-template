@@ -2,112 +2,36 @@
 # https://github.com/fastify/fastify/blob/main/.github/workflows/ci.yml)
 # https://github.com/pnpm/pnpm/blob/main/.github/workflows/ci.yml
 
-name: ci
+name: CI
 
 on:
   push:
     branches:
       - 'main'
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
+    branches:
+      - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Ensure scripts are run with pipefail. See:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
+defaults:
+    run:
+        shell: bash
+
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group:
+    '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref ||
+    github.ref }}'
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  dependency-review:
-    name: Dependency Review
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Dependency review
-        uses: actions/dependency-review-action@v4
-
-  check-licenses:
-    name: Check licenses
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@4.0.0
-        with:
-          version: next-9
-          standalone: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --ignore-scripts
-
-      - name: Check licenses
-        run: npx license-checker --production --summary --onlyAllow="MIT"
-
-  audit:
-    name: Audit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@4.0.0
-        with:
-          version: next-9
-          standalone: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --ignore-scripts
-
-      - name: Audit
-        run: pnpm audit
-
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -117,7 +41,7 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@4.0.0
+        uses: pnpm/action-setup@v4
         with:
           version: next-9
           standalone: true
@@ -134,13 +58,35 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+  code-style:
+      runs-on: ubuntu-latest
+      steps:
+          -   name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+
+          -   name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: next-9
+                  standalone: true
+
+          -   name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 'lts/*'
+                  cache: 'pnpm'
+
+          -   name: Install dependencies
+              run: pnpm install --ignore-scripts
+
+          -   name: Check code style
+              run: pnpm run prettier --check .
+
   test-unit:
-    name: '${{matrix.platform}} / Unit test ${{ matrix.node }}'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [ 20, 22 ]
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
+    name: Unit test
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -148,7 +94,7 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@4.0.0
+        uses: pnpm/action-setup@v4
         with:
           version: next-9
           standalone: true
@@ -156,7 +102,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 'lts/*'
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -175,7 +121,7 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.0.0
+        uses: pnpm/action-setup@v4
         with:
           version: next-9
           standalone: true
@@ -194,32 +140,3 @@ jobs:
 
       - name: Run tests
         run: pnpm exec playwright test
-
-  build:
-    runs-on: ubuntu-latest
-    needs:
-      - test-unit
-      - test-e2e
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.0.0
-        with:
-          version: next-9
-          standalone: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --ignore-scripts
-
-      - name: Build with Next.js
-        run: SKIP_ENV_VALIDATION=1 pnpm next build

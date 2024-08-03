@@ -1,48 +1,41 @@
-import type { StorybookConfig } from '@storybook/nextjs';
-import path from 'node:path';
+import type {StorybookConfig} from '@storybook/nextjs';
+import * as path from "node:path";
 
 const config: StorybookConfig = {
+	framework: '@storybook/nextjs',
 	stories: ['../stories/**/*.stories.@(ts|tsx)'],
-
-	addons: [
-		'@storybook/addon-links',
-		'@storybook/addon-essentials',
-		'@storybook/addon-onboarding',
-		'@storybook/addon-interactions',
-		'@storybook/addon-a11y',
-		'@storybook/addon-viewport',
-		'@storybook/addon-toolbars',
-		'@storybook/addon-controls',
-		'@storybook/addon-actions',
-		'@storybook/addon-docs',
-		'@storybook/test',
-		'@storybook/test-runner',
-		'@storybook/addon-themes',
-		'storybook-dark-mode',
-	],
-
-	framework: {
-		name: '@storybook/nextjs',
-		options: {},
-	},
-
 	features: { experimentalRSC: true },
-
 	staticDirs: ['../public'],
-
 	docs: {},
-
 	typescript: {
 		reactDocgen: 'react-docgen-typescript',
 	},
+	
+	addons: [
+        '@storybook/addon-essentials',
+        '@storybook/addon-interactions',
+        '@storybook/addon-storysource',
+        '@storybook/addon-a11y',
+        '@storybook/test',
+        'storybook-dark-mode',
+    ],
 
 	webpackFinal: async (config) => {
 		config.resolve ||= {};
-		config.resolve.alias ||= {};
-		config.resolve.alias = {
-			...config.resolve.alias,
-			'next-intl/server': path.resolve(__dirname, './mocks/next-intl-server.ts'),
+		config.resolve.modules ||= [];
+
+
+		// Adding fallbacks for Postgres
+		config.resolve.fallback = {
+			...config.resolve.fallback,
+			net: false,
+			tls: false,
+			perf_hooks: false,
 		};
+
+		// auto import mocks from __mocks__ folder if it is set
+		config.resolve.modules = [path.resolve(__dirname, "../__mocks__"), ...config.resolve.modules];
+		
 		return config;
 	},
 };

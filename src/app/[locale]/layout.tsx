@@ -1,10 +1,17 @@
-import '#/tailwind.css';
-import { ColorSchemeScript } from '@mantine/core';
-import React, { type ReactNode } from 'react';
-import { getMessages } from 'next-intl/server';
-import { IntlErrorCode, NextIntlClientProvider } from 'next-intl';
-import { ClientLayout } from '#/app/[locale]/_components/ClientLayout';
-import type { Metadata } from 'next';
+import '@/styles/tailwind.css';
+
+import React, {type ReactNode} from 'react';
+import {getMessages} from 'next-intl/server';
+import type {Metadata} from 'next';
+import {Inter as FontSans} from 'next/font/google';
+import {cn} from '@/utils/utils';
+import {Navbar} from '@/components/layout/navbar';
+import {AppWrapper} from "@/providers/app-wrapper";
+
+const fontSans = FontSans({
+	subsets: ['latin'],
+	variable: '--font-sans',
+});
 
 /**
  * Props for the {@link AppLayout} component.
@@ -20,52 +27,47 @@ type AppLayoutProps = {
 export const metadata: Metadata = {
 	title: {
 		template: '%s - Example',
-		default: 'Page',
+		default: 'Home - Example',
 	},
-};
+} satisfies Metadata;
 
-export function onError(error) {
-	if (error.code === IntlErrorCode.MISSING_MESSAGE) {
-		// Missing translations are expected and should only log an error
-		console.error(error);
-	} else {
-		// Other errors indicate a bug in the app and should be reported
-		// reportToErrorTracking(error);
-	}
-}
+const locales = ['en', 'de'];
 
-export function getMessageFallback({ namespace, key, error }) {
-	const path = [namespace, key].filter((part) => part != null).join('.');
-
-	if (error.code === IntlErrorCode.MISSING_MESSAGE) {
-		return path + ' is not yet translated';
-	} else {
-		return 'Dear developer, please fix this message: ' + path;
-	}
+export function generateStaticParams() {
+	return locales.map((locale) => ({ locale }));
 }
 
 /**
  * The root layout for the app. This is where the page transitions are handled.
  * @returns The root layout.
  */
-export default async function AppLayout({ children, params }: AppLayoutProps) {
-	const messages = await getMessages();
+export default async function RootLayout({ children, params }: AppLayoutProps) {
 	const { locale } = params;
 
+	const messages = await getMessages();
+
 	return (
-		<html lang={locale}>
+		<html lang={locale} suppressHydrationWarning>
 			<head>
-				<ColorSchemeScript defaultColorScheme="auto" />
+				<link rel="icon" href="/favicon_io/favicon.ico" sizes="any" />
+				<link rel="icon" href="/favicon_io/favicon.ico" sizes="16x16" />
+				<link rel="icon" href="/favicon_io/favicon.ico" sizes="32x32" />
+				<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+				<link rel="manifest" href="/favicon_io/site.webmanifest" />
+				<meta name="theme-color" content="#ffffff" />
+				<meta name="description" content="Example" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</head>
-			<body>
-				<NextIntlClientProvider
-					messages={messages}
-					locale={locale}
-					//onError={onError}
-					//getMessageFallback={getMessageFallback}
-				>
-					<ClientLayout params={params}>{children}</ClientLayout>
-				</NextIntlClientProvider>
+			<body
+				className={cn(
+					'h-screen min-h-screen flex-col overflow-x-hidden scroll-smooth bg-background font-sans antialiased',
+					fontSans.variable,
+				)}
+			>
+				<AppWrapper locale={locale} messages={messages}>
+					<Navbar />
+					<main className="h-full">{children}</main>
+				</AppWrapper>
 			</body>
 		</html>
 	);

@@ -1,51 +1,47 @@
 {
-  "ColorSchema": {
-    "schema": "{schema, select, light {light} dark {dark} auto {system} other {}}",
-    "light": "light",
-    "dark": "dark",
-    "auto": "system",
-    "toggle-color-scheme": "Toggle to {schema} theme"
-  },
-  "Buttons": {
-    "toggle": "Toggle",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "close": "Close",
-    "back": "Back",
-    "next": "Next",
-    "finish": "Finish",
-    "save": "Save",
-    "reset": "Reset",
-    "search": "Search",
-    "create": "Create"
-  },
-  "Menu": {
-    "index": "Homepage",
-    "about": "About Us"
-  },
-  "Language": {
-    "en": "English/English",
-    "hu": "Hungarian/Magyar",
-    "select-language": "Select language"
-  },
-  "Index": {
-    "title": "Homepage",
-    "hero": {
-      "title": "Welcome to our website!",
-      "description": "This is a pretty good website, isn't it?",
-      "image": {
-        "alt": "Nature image"
-      }
-    }
-  },
-  "About": {
-    "title": "About Us",
-    "hero": {
-      "title": "About Us",
-      "description": "Not much to say here, just some random text.",
-      "image": {
-        "alt": "Nature image"
-      }
-    }
-  }
+	"components": {
+		"common": {},
+		"inputs": {
+			"select": {
+				"DarkMode": {
+					"light": "light",
+					"dark": "dark",
+					"auto": "auto",
+					"select-color-schema": "Select color schema"
+				},
+				"Language": {
+					"en": "English",
+					"hu": "Hungarian",
+					"select-language": "Select language"
+				}
+			}
+		},
+		"layout": {
+			"Navbar": {
+				"home": "Home",
+				"users": "Users"
+			}
+		}
+	},
+	"app": {
+		"index": {
+			"Page": {
+				"title": "Homepage"
+			},
+			"Error": {
+				"retry": "Próbálja újra",
+				"something-went-wrong": "Something went wrong. Please try again later."
+			},
+			"NotFoundPage": {
+				"title": "Page not found",
+				"description": "The page you are looking for does not exist.",
+				"back-to-homepage": "Back to homepage"
+			}
+		},
+		"users": {
+			"Page": {
+				"title": "Users"
+			}
+		}
+	}
 }

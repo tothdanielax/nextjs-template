@@ -1,28 +1,9 @@
-import '../src/tailwind.css';
+import '../src/styles/tailwind.css';
 
-import type { Preview } from '@storybook/react';
-import { addons } from '@storybook/preview-api';
-import { MantineProvider, useMantineColorScheme } from '@mantine/core';
-import React, { useEffect } from 'react';
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-import { ClientLayout, theme } from '#/app/[locale]/_components/ClientLayout';
-import { IntlProvider, NextIntlClientProvider } from 'next-intl';
-import en from '../messages/en.json';
-import { themes } from '@storybook/theming';
-
-const channel = addons.getChannel();
-
-function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
-	const { setColorScheme } = useMantineColorScheme();
-	const handleColorScheme = (value: boolean) => setColorScheme(value ? 'dark' : 'light');
-
-	useEffect(() => {
-		channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
-		return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
-	}, [channel]);
-
-	return <>{children}</>;
-}
+import type {Preview} from '@storybook/react';
+import React from "react";
+import {themes} from "@storybook/theming";
+import {AppWrapper} from "@/providers/app-wrapper";
 
 const preview: Preview = {
 	parameters: {
@@ -30,34 +11,47 @@ const preview: Preview = {
 		nextjs: {
 			appDirectory: true,
 		},
+		options: {
+			// https://storybook.js.org/docs/writing-stories/naming-components-and-hierarchy#sorting-stories
+			storySort: {
+				method: 'alphabetical',
+				order: ['Pages', 'Components']
+			}
+		},
+		actions: { 
+			// https://storybook.js.org/docs/essentials/actions#automatically-matching-args
+			argTypesRegex: "^on[A-Z].*" 
+		},
 		controls: {
+			// https://storybook.js.org/docs/essentials/controls#custom-control-type-matchers
 			matchers: {
 				color: /(background|color)$/i,
 				date: /Date$/i,
+				boolean: /is[A-Z].*$/i,
 			},
+
+			// https://storybook.js.org/docs/essentials/controls#show-full-documentation-for-each-property
+			expanded: true
 		},
 		docs: {
+			// open issue on docs theming: https://github.com/storybookjs/storybook/issues/28758
 			theme: themes.dark,
 		},
+		
+		// https://storybook.js.org/addons/storybook-dark-mode
+		darkMode: {
+			stylePreview: true,
+			classTarget: 'html',
+			dark: { ...themes.dark },
+			light: { ...themes.light },
+		},
+	
 	},
 
+	// https://storybook.js.org/docs/writing-docs/autodocs#set-up-automated-documentation
 	tags: ['autodocs'],
 	decorators: [
-		(Story) => (
-			<NextIntlClientProvider locale="en" messages={en}>
-				<Story />
-			</NextIntlClientProvider>
-		),
-		(Story) => (
-			<ColorSchemeWrapper>
-				<Story />
-			</ColorSchemeWrapper>
-		),
-		(Story) => (
-			<MantineProvider theme={theme}>
-				<Story />
-			</MantineProvider>
-		),
+		(Story) => <AppWrapper> <Story /> </AppWrapper>,
 	],
 };
 
