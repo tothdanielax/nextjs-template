@@ -32,7 +32,7 @@
     "db:seed": "tsx db/seed.ts",
     "docker:local": "docker compose -f docker-compose.local.yml --env-file .env up -V --remove-orphans --force-recreate --build --wait -d",
     "format": "prettier --write --ignore-unknown .",
-    "lint": "next lint --max-warnings=0",
+    "lint": "SKIP_ENV_VALIDATION=1 next lint --max-warnings=0",
     "start:dev": "next dev --turbo",
     "start:dev-https": "next dev --turbo --experimental-https",
     "start:prod": "next start",

@@ -7,9 +7,7 @@ import path from 'node:path';
  */
 const removeIgnoredFiles = async (/** @type {string[]} */ files) => {
   const eslint = new ESLint();
-  const isIgnored = await Promise.all(
-    files.map((file) => eslint.isPathIgnored(file)),
-  );
+  const isIgnored = await Promise.all(files.map((file) => eslint.isPathIgnored(file)));
   return files.filter((_, i) => !isIgnored[i]);
 };
 
