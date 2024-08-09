@@ -6,7 +6,6 @@
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,
     "noErrorTruncation": true,
-
     /* Strictness */
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
@@ -18,7 +17,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true,
-
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
@@ -31,11 +29,9 @@
     }
   },
   "include": [
-    "**/*.ts",
-    "*.js", // config files
-    "**/*.tsx",
+    "./**/*",
     ".next/types/**/*.ts",
-    "next-env.d.ts"
+    ".storybook/**/*" // .folders excluded by globs by default
   ],
-  "exclude": ["**/node_modules"]
+  "exclude": ["node_modules", "dist", "coverage", "test-results", "certificates"]
 }
