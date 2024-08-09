@@ -1,47 +1,47 @@
 {
-	"components": {
-		"common": {},
-		"inputs": {
-			"select": {
-				"DarkMode": {
-					"light": "light",
-					"dark": "dark",
-					"auto": "auto",
-					"select-color-schema": "Select color schema"
-				},
-				"Language": {
-					"en": "English",
-					"hu": "Hungarian",
-					"select-language": "Select language"
-				}
-			}
-		},
-		"layout": {
-			"Navbar": {
-				"home": "Home",
-				"users": "Users"
-			}
-		}
-	},
-	"app": {
-		"index": {
-			"Page": {
-				"title": "Homepage"
-			},
-			"Error": {
-				"retry": "Próbálja újra",
-				"something-went-wrong": "Something went wrong. Please try again later."
-			},
-			"NotFoundPage": {
-				"title": "Page not found",
-				"description": "The page you are looking for does not exist.",
-				"back-to-homepage": "Back to homepage"
-			}
-		},
-		"users": {
-			"Page": {
-				"title": "Users"
-			}
-		}
-	}
+  "components": {
+    "common": {},
+    "inputs": {
+      "select": {
+        "DarkMode": {
+          "light": "light",
+          "dark": "dark",
+          "auto": "auto",
+          "select-color-schema": "Select color schema"
+        },
+        "Language": {
+          "en": "English",
+          "hu": "Hungarian",
+          "select-language": "Select language"
+        }
+      }
+    },
+    "layout": {
+      "Navbar": {
+        "home": "Home",
+        "users": "Users"
+      }
+    }
+  },
+  "app": {
+    "index": {
+      "Page": {
+        "title": "Homepage"
+      },
+      "Error": {
+        "retry": "Próbálja újra",
+        "something-went-wrong": "Something went wrong. Please try again later."
+      },
+      "NotFoundPage": {
+        "title": "Page not found",
+        "description": "The page you are looking for does not exist.",
+        "back-to-homepage": "Back to homepage"
+      }
+    },
+    "users": {
+      "Page": {
+        "title": "Users"
+      }
+    }
+  }
 }

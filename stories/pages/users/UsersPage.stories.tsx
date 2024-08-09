@@ -1,9 +1,9 @@
-import type {Meta, StoryObj} from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import UsersPage from '@/app/[locale]/users/page';
 
 const meta = {
-	title: 'Pages/Users/Page',
-	component: UsersPage,
+  title: 'Pages/Users/Page',
+  component: UsersPage,
 } satisfies Meta<typeof UsersPage>;
 
 export default meta;

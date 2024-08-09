@@ -1,9 +1,9 @@
-import {describe, expect, expectTypeOf, test} from 'vitest';
-import {env} from '@/env';
+import { describe, expect, expectTypeOf, test } from 'vitest';
+import { env } from '@/env';
 
 describe('Env', () => {
-	test('exports env', async () => {
-		expect(env).toBeDefined();
-		expectTypeOf(env).toBeObject();
-	});
+  test('exports env', async () => {
+    expect(env).toBeDefined();
+    expectTypeOf(env).toBeObject();
+  });
 });

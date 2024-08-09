@@ -1,9 +1,9 @@
-import type {Meta, StoryObj} from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import IndexPage from '@/app/[locale]/page';
 
 const meta = {
-	title: 'Pages/Index/Page',
-	component: IndexPage,
+  title: 'Pages/Index/Page',
+  component: IndexPage,
 } satisfies Meta<typeof IndexPage>;
 
 export default meta;

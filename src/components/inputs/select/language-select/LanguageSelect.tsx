@@ -6,17 +6,17 @@ import { LanguageSelectDropdown } from '@/components/inputs/select/language-sele
  * Language select wrapper that provides a tooltip.
  */
 export async function LanguageSelect() {
-	const t = await getTranslations('components.inputs.select.Language');
+  const t = await getTranslations('components.inputs.select.Language');
 
-	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<LanguageSelectDropdown />
-			</TooltipTrigger>
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <LanguageSelectDropdown />
+      </TooltipTrigger>
 
-			<TooltipContent>
-				<p>{t('select-language')}</p>
-			</TooltipContent>
-		</Tooltip>
-	);
+      <TooltipContent>
+        <p>{t('select-language')}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
 }

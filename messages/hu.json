@@ -1,47 +1,47 @@
 {
-	"components": {
-		"common": {},
-		"inputs": {
-			"select": {
-				"DarkMode": {
-					"light": "világos",
-					"dark": "sötét",
-					"auto": "automatikus",
-					"toggle-color-schema": "Válassza ki a színsémát"
-				},
-				"Language": {
-					"en": "Angol",
-					"hu": "Magyar",
-					"select-language": "Válasszon nyelvet"
-				}
-			}
-		},
-		"layout": {
-			"Navbar": {
-				"home": "Kezdőlap",
-				"users": "Felhasználók"
-			}
-		}
-	},
-	"app": {
-		"index": {
-			"Page": {
-				"title": "Kezdőlap"
-			},
-			"Error": {
-				"retry": "Próbálja újra",
-				"something-went-wrong": "Something went wrong. Please try again later."
-			},
-			"NotFoundPage": {
-				"title": "Az oldal nem található",
-				"description": "Az általad keresett oldal nem létezik.",
-				"back-to-homepage": "Vissza a kezdőlapra"
-			}
-		},
-		"users": {
-			"Page": {
-				"title": "Felhasználók"
-			}
-		}
-	}
+  "components": {
+    "common": {},
+    "inputs": {
+      "select": {
+        "DarkMode": {
+          "light": "világos",
+          "dark": "sötét",
+          "auto": "automatikus",
+          "toggle-color-schema": "Válassza ki a színsémát"
+        },
+        "Language": {
+          "en": "Angol",
+          "hu": "Magyar",
+          "select-language": "Válasszon nyelvet"
+        }
+      }
+    },
+    "layout": {
+      "Navbar": {
+        "home": "Kezdőlap",
+        "users": "Felhasználók"
+      }
+    }
+  },
+  "app": {
+    "index": {
+      "Page": {
+        "title": "Kezdőlap"
+      },
+      "Error": {
+        "retry": "Próbálja újra",
+        "something-went-wrong": "Something went wrong. Please try again later."
+      },
+      "NotFoundPage": {
+        "title": "Az oldal nem található",
+        "description": "Az általad keresett oldal nem létezik.",
+        "back-to-homepage": "Vissza a kezdőlapra"
+      }
+    },
+    "users": {
+      "Page": {
+        "title": "Felhasználók"
+      }
+    }
+  }
 }

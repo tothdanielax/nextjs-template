@@ -1,9 +1,9 @@
-import type {Meta, StoryObj} from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Layout from '@/app/[locale]/layout';
 
 const meta = {
-	title: 'Pages/Layout',
-	component: Layout,
+  title: 'Pages/Layout',
+  component: Layout,
 } satisfies Meta<typeof Layout>;
 
 export default meta;

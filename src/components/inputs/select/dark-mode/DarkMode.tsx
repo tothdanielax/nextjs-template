@@ -6,17 +6,17 @@ import { DarkModeDropdown } from '@/components/inputs/select/dark-mode/DarkModeD
  * A dark mode toggle wrapper with a tooltip.
  */
 export async function DarkMode() {
-	const t = await getTranslations('components.inputs.select.DarkMode');
+  const t = await getTranslations('components.inputs.select.DarkMode');
 
-	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<DarkModeDropdown />
-			</TooltipTrigger>
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <DarkModeDropdown />
+      </TooltipTrigger>
 
-			<TooltipContent>
-				<p>{t('select-color-schema')}</p>
-			</TooltipContent>
-		</Tooltip>
-	);
+      <TooltipContent>
+        <p>{t('select-color-schema')}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
 }

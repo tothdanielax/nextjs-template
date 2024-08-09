@@ -1,6 +1,6 @@
-import {client, db} from './drizzle';
-import {users} from './schema/users';
-import {usersSeed} from './seed/users';
+import { client, db } from './drizzle';
+import { users } from './schema/users';
+import { usersSeed } from './seed/users';
 
 await db.insert(users).values(usersSeed);
 
