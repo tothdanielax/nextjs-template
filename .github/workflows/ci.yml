@@ -75,7 +75,7 @@ jobs:
         run: pnpm install --ignore-scripts
 
       - name: Check code style
-        run: pnpm run prettier --check .
+        run: prettier --check .
 
   test-unit:
     name: Unit test
