@@ -39,7 +39,7 @@
     "storybook:build": "storybook build",
     "storybook:dev": "storybook dev -p 6006",
     "test:e2e": "playwright test",
-    "test:unit": "SKIP_ENV_VALIDATION=1 vitest --coverage"
+    "test:unit": "SKIP_ENV_VALIDATION=1 vitest"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpx lint-staged"

@@ -11,11 +11,11 @@ export default defineConfig({
   test: {
     coverage: {
       provider: 'v8',
-      include: ['./src/**.{ts,tsx}'],
-      exclude: ['./src/styles', './src/types', './src/app', './src/components/ui'],
+      include: ['src/**/*'],
+      exclude: ['src/styles', 'src/types', 'src/app', 'src/components/ui'],
       extension: ['.ts', '.tsx'],
       ignoreEmptyLines: true,
-      reporter: ['html'],
+      reporter: ['html', 'json'],
       thresholds: {
         branches: 60,
         functions: 60,
