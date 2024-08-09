@@ -18,13 +18,12 @@ on:
 # Ensure scripts are run with pipefail. See:
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
 defaults:
-    run:
-        shell: bash
+  run:
+    shell: bash
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
-  group:
-    '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref ||
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref ||
     github.ref }}'
   cancel-in-progress: true
 
@@ -33,6 +32,29 @@ permissions:
 
 jobs:
   lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+
+      - name: Lint
+        run: pnpm lint
+
+  code-style:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -55,34 +77,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --ignore-scripts
 
-      - name: Lint
-        run: pnpm lint
-
-  code-style:
-      runs-on: ubuntu-latest
-      steps:
-          -   name: Checkout
-              uses: actions/checkout@v4
-              with:
-                  persist-credentials: false
-
-          -   name: Install pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  version: next-9
-                  standalone: true
-
-          -   name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 'lts/*'
-                  cache: 'pnpm'
-
-          -   name: Install dependencies
-              run: pnpm install --ignore-scripts
-
-          -   name: Check code style
-              run: pnpm run prettier --check .
+      - name: Check code style
+        run: pnpm run prettier --check .
 
   test-unit:
     name: Unit test
@@ -95,9 +91,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: next-9
-          standalone: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -122,9 +115,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: next-9
-          standalone: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
