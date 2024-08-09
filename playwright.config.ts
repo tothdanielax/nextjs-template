@@ -44,7 +44,7 @@ export default defineConfig({
 
   /* Run your local test dev server before starting the tests */
   webServer: {
-    command: 'pnpm start:dev',
+    command: 'SKIP_ENV_VALIDATION=1 pnpm start:dev',
     reuseExistingServer: !process.env.CI,
     timeout: 30 * 1000,
     url: 'http://localhost:3000/en',
