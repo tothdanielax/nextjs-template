@@ -1,5 +1,7 @@
 ![GitHub License](https://img.shields.io/github/license/tothdanielax/nextjs-template)
 [![codecov](https://codecov.io/gh/tothdanielax/nextjs-template/branch/main/graph/badge.svg?token=4SBWQ1C2QH)](https://codecov.io/gh/tothdanielax/nextjs-template)
+[![CodeQL](https://github.com/tothdanielax/nextjs-template/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/tothdanielax/nextjs-template/actions/workflows/github-code-scanning/codeql)
+[![CI](https://github.com/tothdanielax/nextjs-template/actions/workflows/ci.yml/badge.svg)](https://github.com/tothdanielax/nextjs-template/actions/workflows/ci.yml)
 
 ## [API Documentation](docs/index.html)
 

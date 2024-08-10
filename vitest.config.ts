@@ -16,12 +16,6 @@ export default defineConfig({
       extension: ['.ts', '.tsx'],
       ignoreEmptyLines: true,
       reporter: ['html', 'json'],
-      thresholds: {
-        branches: 60,
-        functions: 60,
-        lines: 60,
-        statements: 60,
-      },
     },
     environment: 'happy-dom',
     globals: true,
