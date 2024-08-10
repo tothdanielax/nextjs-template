@@ -75,30 +75,38 @@ export const env = createEnv({
    */
   server: {
     // General
-    ANALYZE: z.optional(
-      onlyBoolean({
-        description:
-          'Enable bundle analyzer for NextJS. See: https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer',
-      }),
-    ),
+    ANALYZE: onlyBoolean({
+      description:
+        'Enable bundle analyzer for NextJS. See: https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer',
+    }).default('false'),
 
     // Database
-    DB_HOST: z.string({
-      description: 'The database host. IP or domain name.',
-    }),
-    DB_PORT: z.number({
-      description: 'The database port. PostgreSQL default is 5432.',
-      coerce: true,
-    }),
-    POSTGRES_USER: z.string({
-      description: 'The database user.',
-    }),
-    POSTGRES_PASSWORD: z.string({
-      description: 'The database password.',
-    }),
-    MIGRATIONS_DIR: z.string({
-      description: 'The directory where the migrations are stored.',
-    }),
+    DB_HOST: z
+      .string({
+        description: 'The database host. IP or domain name.',
+      })
+      .default('0.0.0.0'),
+    DB_PORT: z
+      .number({
+        description: 'The database port. PostgreSQL default is 5432.',
+        coerce: true,
+      })
+      .default(5432),
+    POSTGRES_USER: z
+      .string({
+        description: 'The database user.',
+      })
+      .default('postgres'),
+    POSTGRES_PASSWORD: z
+      .string({
+        description: 'The database password.',
+      })
+      .default('postgres'),
+    MIGRATIONS_DIR: z
+      .string({
+        description: 'The directory where the migrations are stored.',
+      })
+      .default('db/migrations'),
   },
 
   /**
