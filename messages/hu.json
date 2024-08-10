@@ -7,7 +7,7 @@
           "light": "világos",
           "dark": "sötét",
           "auto": "automatikus",
-          "toggle-color-schema": "Válassza ki a színsémát"
+          "select-color-schema": "Válassza ki a színsémát"
         },
         "Language": {
           "en": "Angol",

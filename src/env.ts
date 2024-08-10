@@ -75,10 +75,12 @@ export const env = createEnv({
    */
   server: {
     // General
-    ANALYZE: onlyBoolean({
-      description:
-        'Enable bundle analyzer for NextJS. See: https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer',
-    }),
+    ANALYZE: z.optional(
+      onlyBoolean({
+        description:
+          'Enable bundle analyzer for NextJS. See: https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer',
+      }),
+    ),
 
     // Database
     DB_HOST: z.string({

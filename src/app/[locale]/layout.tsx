@@ -1,12 +1,13 @@
 import '@/styles/tailwind.css';
 
 import React, { type ReactNode } from 'react';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/utils/utils';
 import { Navbar } from '@/components/layout/navbar';
 import { AppWrapper } from '@/providers/app-wrapper';
+import { locales } from '@/i18n';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -31,8 +32,6 @@ export const metadata: Metadata = {
   },
 } satisfies Metadata;
 
-const locales = ['en', 'de'];
-
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -43,6 +42,7 @@ export function generateStaticParams() {
  */
 export default async function RootLayout({ children, params }: AppLayoutProps) {
   const { locale } = params;
+  unstable_setRequestLocale(locale);
 
   const messages = await getMessages();
 

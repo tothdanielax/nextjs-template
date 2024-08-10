@@ -4,6 +4,10 @@ import Layout from '@/app/[locale]/layout';
 const meta = {
   title: 'Pages/Layout',
   component: Layout,
+  args: {
+    params: { locale: 'en' },
+    children: 'children',
+  },
 } satisfies Meta<typeof Layout>;
 
 export default meta;
