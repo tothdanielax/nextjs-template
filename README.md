@@ -1,4 +1,5 @@
 ![GitHub License](https://img.shields.io/github/license/tothdanielax/nextjs-template)
+[![codecov](https://codecov.io/gh/tothdanielax/nextjs-template/branch/main/graph/badge.svg?token=4SBWQ1C2QH)](https://codecov.io/gh/tothdanielax/nextjs-template)
 
 ## [API Documentation](docs/index.html)
 
