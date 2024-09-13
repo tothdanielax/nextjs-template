@@ -12,13 +12,9 @@
 - [Comments](#comments)
 - [License](#license)
 
----
-
 # Description
 
 An optimized, feature packed NextJS 14 template with TypeScript, Vitest, Playwright, ESLint, Prettier, Storybook, TailwindCSS, GitHub Actions CI/CD pipeline and more. Features can be tailored to your needs easily.
-
----
 
 # Features
 
@@ -40,13 +36,9 @@ An optimized, feature packed NextJS 14 template with TypeScript, Vitest, Playwri
 - 🌙 **Dark mode** support via **Next-Themes**. This is also configured to work well with Storybook.
 - ...and more!
 
----
-
 # Demo
 
 The demo is deployed to Vercel. Available at: [https://nextjs-template-zq12.vercel.app/en](https://nextjs-template-zq12.vercel.app/en).
-
----
 
 # Setup
 
@@ -68,7 +60,7 @@ cd nextjs-template
 pnpm install
 ```
 
-- Create '.env' file based on '.env.example' file (see [Environment Variables](#Environment Variables))
+- Create '.env' file based on '.env.example' file (see [Environment](#Environment))
 - Start the development server:
 
 ```bash
@@ -77,9 +69,7 @@ pnpm start:dev # you can also run it with 'pnpm start:dev-https' to start the LO
 
 - Open [http://localhost:PORT](http://localhost:PORT) with your browser to see the result (if you didn't change the port, it should be 3000). Change http to https if you started the server with HTTPS.
 
----
-
-# Environment Variables
+# Environment
 
 The environment variables are stored in a `.env` file. The `.env.example` file contains an example for this. You can copy the `.env.example` file and rename it to `.env` and change the values as you see fit.
 
@@ -96,8 +86,6 @@ The following environment variables are available:
 | `POSTGRES_PASSWORD` | Postgres password. Used by Drizzle & Docker. Read more about how Postgres handles password: [https://www.postgresql.org/docs/current/auth-password.html](https://www.postgresql.org/docs/current/auth-password.html).                                                                                                            | `postgres`      |
 | `MIGRATIONS_DIR`    | Migrations directory. If you did not meet with the term before, check [https://www.liquibase.com/resources/guides/database-schema-migration](https://www.liquibase.com/resources/guides/database-schema-migration). Used by Drizzle (see [https://orm.drizzle.team/docs/migrations](https://orm.drizzle.team/docs/migrations)]). | `db/migrations` |
 
----
-
 # Comments
 
 - The template is configured to work with PostgreSQL. If you want to use another database, you need to change the `drizzle` configuration in the `src/db/index.ts` file. You can find more information about the configuration in the [Drizzle documentation](https://orm.drizzle.team/kit-docs/conf). You also need to change the `docker-compose.local.yml` file to use the correct database image. Environment variables and `src/env.ts` should be changed accordingly.
@@ -105,8 +93,6 @@ The following environment variables are available:
   **Note:** Plugins should be updated carefully, because some of them transitioned to v9 with breaking changes/stopped supporting older versions. <br>
   **Note**: Before updating any rules check [Typescript Eslint - Performance](https://typescript-eslint.io/troubleshooting/typed-linting/performance/).
 - The template uses `pnpm` as the package manager. I recommend to use it, because I find it super fast.:) The CI/CD pipeline is also configured to use `pnpm`. If you would like to change it, you need to update the `pnpm` commands in the `package.json` file and the `ci.yml` file in the `.github/workflows` directory. Also the `pnpm-lock.yaml` file should be removed.
-
----
 
 # License
 
